@@ -23,7 +23,7 @@ default["mpd"]["packages"] = %w(
   ncmpc
 )
 
-default["mpd"]["zypper"]["alias"] = "packman-multimedia"
-default["mpd"]["zypper"]["title"] = "Packman Multimedia"
-default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/openSUSE_#{node["platform_version"]}/Multimedia/"
+default["mpd"]["zypper"]["alias"] = "packman"
+default["mpd"]["zypper"]["title"] = "Packman Repository"
+default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/openSUSE_#{node["platform_version"]}/"
 default["mpd"]["zypper"]["key"] = "#{node["mpd"]["zypper"]["repo"]}repodata/repomd.xml.key"
