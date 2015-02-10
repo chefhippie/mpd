@@ -23,6 +23,7 @@ default["mpd"]["packages"] = %w(
   ncmpc
 )
 
+default["mpd"]["zypper"]["enabled"] = true
 default["mpd"]["zypper"]["alias"] = "packman"
 default["mpd"]["zypper"]["title"] = "Packman Repository"
 default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/openSUSE_#{node["platform_version"]}/"
