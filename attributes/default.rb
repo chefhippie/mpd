@@ -26,5 +26,5 @@ default["mpd"]["packages"] = %w(
 default["mpd"]["zypper"]["enabled"] = true
 default["mpd"]["zypper"]["alias"] = "packman"
 default["mpd"]["zypper"]["title"] = "Packman Repository"
-default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/openSUSE_#{node["platform_version"]}/"
+default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/openSUSE_#{node["platform_version"].to_i.to_s == node["platform_version"] ? "Tumbleweed" : node["platform_version"]}/"
 default["mpd"]["zypper"]["key"] = "#{node["mpd"]["zypper"]["repo"]}repodata/repomd.xml.key"
