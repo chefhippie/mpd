@@ -23,8 +23,22 @@ default["mpd"]["packages"] = %w(
   ncmpc
 )
 
-default["mpd"]["zypper"]["enabled"] = true
-default["mpd"]["zypper"]["alias"] = "packman"
-default["mpd"]["zypper"]["title"] = "Packman Repository"
-default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/openSUSE_#{node["platform_version"].to_i.to_s == node["platform_version"] ? "Tumbleweed" : node["platform_version"]}/"
-default["mpd"]["zypper"]["key"] = "#{node["mpd"]["zypper"]["repo"]}repodata/repomd.xml.key"
+case node["platform_family"]
+when "suse"
+  repo = case node["platform_version"]
+  when /\A13\.\d+\z/
+    "openSUSE_#{node["platform_version"]}"
+  when /\A42\.\d+\z/
+    "openSUSE_Leap_#{node["platform_version"]}"
+  when /\A\d{8}\z/
+    "openSUSE_Tumbleweed"
+  else
+    raise "Unsupported SUSE version"
+  end
+
+  default["mpd"]["zypper"]["enabled"] = true
+  default["mpd"]["zypper"]["alias"] = "packman"
+  default["mpd"]["zypper"]["title"] = "Packman Repository"
+  default["mpd"]["zypper"]["repo"] = "http://packman.inode.at/suse/#{repo}/"
+  default["mpd"]["zypper"]["key"] = "#{node["mpd"]["zypper"]["repo"]}repodata/repomd.xml.key"
+end
